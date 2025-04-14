@@ -36,4 +36,8 @@ public class MessageStack {
         }
         return messages;
     }
+
+    public int size(){
+        return this.elements.size();
+    }
 }
