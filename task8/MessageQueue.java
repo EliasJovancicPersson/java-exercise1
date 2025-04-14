@@ -12,6 +12,9 @@ public class MessageQueue
    */
    public MessageQueue(int capacity)
    {
+      if (capacity <= 0) {
+        throw new IllegalArgumentException("Capacity must be greater than 0");
+      }
       elements = new Message[capacity];
       count = 0;
       head = 0;
@@ -25,6 +28,9 @@ public class MessageQueue
    */
    public Message removeFirst()
    {
+      if (size() == 0) {
+        throw new IllegalStateException("Queue is empty");
+      }
       Message r = elements[head];
       head = (head + 1) % elements.length;
       count--;
@@ -34,7 +40,7 @@ public class MessageQueue
    /**
        Append a message at tail.
        @param aMessage the message to be appended
-       @precondition size() < getCapacity();
+       @precondition size() < getCapacity(); preconditon should in theory be removed now that we expand the queue
    */
    public void add(Message aMessage)
    {
@@ -80,6 +86,9 @@ public class MessageQueue
    */
    public Message getFirst()
    {
+     if (size() <= 0) {
+        throw new IllegalStateException("Queue is empty");
+      } 
       return elements[head];
    }
 

@@ -29,33 +29,33 @@ public class Matrix {
         }
     }
 
-    public Matrix add(Matrix matrix1, Matrix matrix2) throws IllegalArgumentException{
+    public Matrix add(Matrix matrix) throws IllegalArgumentException{
        
-        if(!(matrix1.sizeC == matrix2.sizeC && matrix1.sizeR == matrix2.sizeR)){
+        if(!(this.sizeC == matrix.sizeC && this.sizeR == matrix.sizeR)){
             throw new IllegalArgumentException("wrong size");
         }
 
-        Matrix newMatrix = new Matrix(matrix1.sizeC,matrix1.sizeR);
-        for(int r = 0;r<matrix1.sizeR;r++){
-            for(int c = 0;c<matrix1.sizeC;c++){
-                newMatrix.elements[r][c] = matrix1.elements[r][c] + matrix2.elements[r][c];
+        Matrix newMatrix = new Matrix(this.sizeC,this.sizeR);
+        for(int r = 0;r<this.sizeR;r++){
+            for(int c = 0;c<this.sizeC;c++){
+                newMatrix.elements[r][c] = this.elements[r][c] + matrix.elements[r][c];
             }
         }
         return newMatrix;
     }
 
-    public Matrix multiply(Matrix matrix1,Matrix matrix2) throws IllegalArgumentException{
+    public Matrix multiply(Matrix matrix) throws IllegalArgumentException{
         
-        if(!(matrix1.sizeR == matrix2.sizeC)){
+        if(!(this.sizeR == matrix.sizeC)){
             throw new IllegalArgumentException("Incorrect size");
         }
 
-        Matrix newMatrix = new Matrix(matrix1.sizeR,matrix2.sizeC);
-        for (int r = 0; r < matrix1.sizeR; r++) {
-            for(int c = 0;c < matrix2.sizeC; c++){
+        Matrix newMatrix = new Matrix(this.sizeR,matrix.sizeC);
+        for (int r = 0; r < this.sizeR; r++) {
+            for(int c = 0;c < matrix.sizeC; c++){
                 double sum = 0;
-                for(int k = 0; k < matrix1.sizeC;k++){
-                    sum += matrix1.elements[r][k] * matrix2.elements[k][c];
+                for(int k = 0; k < this.sizeC;k++){
+                    sum += this.elements[r][k] * matrix.elements[k][c];
                 }
                 newMatrix.elements[r][c] = sum;
             }

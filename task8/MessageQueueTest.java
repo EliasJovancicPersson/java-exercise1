@@ -69,4 +69,30 @@ public class MessageQueueTest {
         queue.removeFirst();
         assertEquals(message3, queue.getFirst());
     }
+
+    @test
+    public void testEmptyQueue() {
+        MessageQueue queue = new MessageQueue(2);
+        assertEquals(0, queue.size());
+        try {
+            queue.getFirst();
+        } catch (IllegalStateException e) {
+            assertEquals("Queue is empty", e.getMessage());
+        }
+        try {
+            queue.removeFirst();
+        } catch (IllegalStateException e) {
+            assertEquals("Queue is empty", e.getMessage());
+        }
+    }
+
+    @test
+    public void testCreateEmpty() {
+        try{
+        MessageQueue queue = new MessageQueue(0);
+        }catch (IllegalArgumentException e) {
+            assertEquals("Capacity must be greater than 0", e.getMessage());
+        }
+        
+    }
 }
