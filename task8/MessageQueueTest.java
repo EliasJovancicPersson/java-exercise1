@@ -70,7 +70,7 @@ public class MessageQueueTest {
         assertEquals(message3, queue.getFirst());
     }
 
-    @test
+    @Test
     public void testEmptyQueue() {
         MessageQueue queue = new MessageQueue(2);
         assertEquals(0, queue.size());
@@ -86,7 +86,7 @@ public class MessageQueueTest {
         }
     }
 
-    @test
+    @Test
     public void testCreateEmpty() {
         try{
         MessageQueue queue = new MessageQueue(0);
